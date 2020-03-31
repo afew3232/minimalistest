@@ -34,5 +34,5 @@
 ## 設計書
 
 ### 機能一覧
-[機能一覧リンク](https://docs.google.com/spreadsheets/d/1UgK-https://docs.google.com/spreadsheets/d/180skcUMP6q5YW0xqy-IzK4oNnFCjXzpPr4R6SMxuBNg/edit#gid=0)
+[機能一覧リンク](https://docs.google.com/spreadsheets/d/180skcUMP6q5YW0xqy-IzK4oNnFCjXzpPr4R6SMxuBNg/edit#gid=0)
 
