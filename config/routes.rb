@@ -1,30 +1,14 @@
 Rails.application.routes.draw do
-  get 'home/top'
+  root 'home#top'
   get 'home/about'
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/new'
-  get 'posts/edit'
-  get 'users/show'
-  get 'users/edit'
+
+  resources :users, only: [:show, :edit, :update]
+  resources :posts, only: [:index, :show, :new, :create, :edit, :update]
   namespace :admin do
-    get 'admins/show'
-    get 'admins/edit'
-  end
-  namespace :admin do
-    get 'tags/index'
-    get 'tags/edit'
-  end
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :edit, :update]
+    resources :tags, only: [:index, :edit, :update]
+    resources :admins, only: [:show, :edit, :update]
   end
   devise_for :admins
   devise_for :users
