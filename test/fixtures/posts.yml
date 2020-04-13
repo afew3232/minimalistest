@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
   title: MyString
   text: MyText
-  merit: MyText
-  demerit: MyText
+  merit: MyString
+  demerit: MyString
 
 two:
-  user_id: 1
   title: MyString
   text: MyText
-  merit: MyText
-  demerit: MyText
+  merit: MyString
+  demerit: MyString
