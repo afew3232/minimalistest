@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show, :edit, :update]
+  get 'posts/confirm_new'
+  get 'posts/confirm_edit'
   resources :posts, only: [:index, :show, :new, :create, :edit, :update]
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :edit, :update]
-    resources :tags, only: [:index, :edit, :update]
+    resources :tags, only: [:index, :edit, :update, :create, :destroy]
     resources :admins, only: [:show, :edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
