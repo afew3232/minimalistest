@@ -3,11 +3,7 @@
 one:
   title: MyString
   text: MyText
-  merit: MyString
-  demerit: MyString
 
 two:
   title: MyString
   text: MyText
-  merit: MyString
-  demerit: MyString
