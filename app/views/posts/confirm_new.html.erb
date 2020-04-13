@@ -3,12 +3,21 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
-			<p>以下の内容でよろしいですか?</p>
+			<% if flash[:notice] %>
+				<p><%= flash[:notice] %></p>
+			<% end %>
 
+			<p>以下の内容でよろしいですか?</p>
 			<h3><%= @post.title %></h3>
 			<p><%= @post.text %></p>
-			<p>メリット</p>
-			<p>デメリット</p>
+
+			<%= form_for @post, url: posts_path do |f| %>
+
+				<%= f.hidden_field :title %>
+				<%= f.hidden_field :text %>
+
+				<%= f.submit "投稿" %>
+			<% end %>
 
 		</div>
 	</div>
