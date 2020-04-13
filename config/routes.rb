@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :admins
   devise_for :users
+
   resources :users, only: [:show, :edit, :update]
   resources :posts, only: [:index, :show, :new, :create, :edit, :update]
+
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :edit, :update]
