@@ -8,8 +8,21 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(params_user)
+      redirect_to admin_user_path(@user.id)
+    else
+      render :edit
+    end
   end
+
+  private
+  def params_user
+    params.require(:user).permit(:email, :lastname, :lastname_kana, :firstname, :firstname_kana, :nickname)
+  end
+
 end
