@@ -1,3 +1,36 @@
 <%= render "admin/home/header" %>
-<h1>Admin::Posts#edit</h1>
-<p>Find me in app/views/admin/posts/edit.html.erb</p>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 offset-sm-2">
+			<%= render "devise/shared/error_messages", resource: @post %>
+
+			<%= form_for @post, url: admin_posts_confirm_edit_path, method: :get do |f| %>
+				<div class="row">
+					<div class="col-sm-1">
+						<%= f.label :title %>
+					</div>
+					<div class="col-sm-11">
+						<%= f.text_field :title, placeholder: "タイトル" %>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-1">
+						<%= f.label :text %>
+					</div>
+					<div class="col-sm-11">
+						<%= f.text_area :text, style: "resize:none" %>
+					</div>
+				</div>
+				<%= hidden_field_tag :id, @post.id %>
+
+				<div class="row">
+					<%= f.submit "確認画面へ", class: "btn btn-primary" %>
+				</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
