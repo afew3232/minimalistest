@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   		redirect_to post_path(@post.id)
   	else
   		flash[:notice] = "エラーが発生しました。failed to update."
-  		render :confirm_new
+  		render :confirm_edit
   	end
   end
 
