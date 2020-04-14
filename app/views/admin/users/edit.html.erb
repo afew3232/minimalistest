@@ -1,3 +1,36 @@
 <%= render "admin/home/header" %>
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 offset-sm-2">
+			<%= render "devise/shared/error_messages", resource: @user %>
+
+			<div class="row">
+				<h3>会員情報編集</h3>
+			</div>
+
+			<%= form_for @user,url: admin_user_path(@user.id) do |f| %>
+				<div class="row">
+					<div class="col-sm-2">
+						<p><b>id</b></p>
+					</div>
+					<div class="col-sm-10">
+						<p><%= @user.id %></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-2">
+						<p><b>email</b></p>
+					</div>
+					<div class="col-sm-10">
+						<p><%= f.text_field :email %></p>
+					</div>
+				</div>
+
+				<%= f.submit "編集完了", class: "btn btn-primary" %>
+			<% end %>
+
+		</div>
+	</div>
+</div>
