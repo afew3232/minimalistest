@@ -30,6 +30,25 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
 
+      <div class="field">
+        <label>ニックネーム</label>
+        <%= f.text_field :nickname,autocomplete: "記事投稿時に使用される名前です。", class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <label>名前</label>
+        <%= f.text_field :lastname,autocomplete: "山田", class: "form-control" %>
+        <%= f.text_field :firstname,autocomplete: "太郎", class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <label>カナ</label>
+        <%= f.text_field :lastname_kana,autocomplete: "ヤマダ", class: "form-control" %>
+        <%= f.text_field :firstname_kana,autocomplete: "タロウ", class: "form-control" %>
+      </div>
+
+      
+
       <div class="actions">
         <%= f.submit "Sign up", class: "btn btn-primary" %>
       </div>
