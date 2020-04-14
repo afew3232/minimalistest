@@ -1,0 +1,25 @@
+<%= render "home/header" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 offset-sm-2">
+			<% if flash[:notice] %>
+				<p><%= flash[:notice] %></p>
+			<% end %>
+
+			<p>以下の内容に変更してよろしいですか?</p>
+			<h3><%= @post.title %></h3>
+			<p><%= @post.text %></p>
+
+			<%= form_for @post, url: post_path(@post.id),method: :patch do |f| %>
+
+				<%= f.hidden_field :user_id, value: current_user.id %>
+				<%= f.hidden_field :title %>
+				<%= f.hidden_field :text %>
+
+				<%= f.submit "編集完了" %>
+			<% end %>
+
+		</div>
+	</div>
+</div>
