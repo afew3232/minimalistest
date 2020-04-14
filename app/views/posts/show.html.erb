@@ -1,3 +1,18 @@
 <%= render "home/header" %>
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 offset-sm-2">
+			<h3><%= @post.title %></h3>
+			<p><%= @post.text %></p>
+
+			<!--自分の記事 → 編集リンク-->
+			<% if user_signed_in? %>
+				<% if current_user.id == @post.user_id %>
+					<%= link_to "この記事を編集する", edit_post_path, class: "btn btn-primary" %>
+				<% end %>
+			<% end %>
+
+		</div>
+	</div>
+</div>
