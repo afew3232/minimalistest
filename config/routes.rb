@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show, :edit, :update]
-  get 'posts/confirm_new'
-  get 'posts/confirm_edit'
+  post 'posts/confirm_new'
+  post 'posts/confirm_edit'
   resources :posts, only: [:index, :show, :new, :create, :edit, :update]
 
   namespace :admin do
