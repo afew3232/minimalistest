@@ -29,7 +29,7 @@ class Admin::TagsController < ApplicationController
 
   def destroy
   	Tag.destroy(params[:id])
-  	flash[:notice] = "タグを削除しました。"
+  	flash[:success] = "タグを削除しました。"
   	redirect_to admin_tags_path
   end
 
