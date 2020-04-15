@@ -7,17 +7,19 @@
 				<p><%= flash[:notice] %></p>
 			<% end %>
 
-			<p>以下の内容に変更してよろしいですか?</p>
+			<h3 class="common-title">確認画面</h3>
+			<p style="border-bottom:solid gray 2px;padding:10px;margin-bottom:10px;">以下の内容で表示されます。</p>
+
 			<h3><%= @post.title %></h3>
-			<p><%= @post.text %></p>
+			<%= attachment_image_tag @post, :image, :limit, 600, 400, fallback: "post-no-image.jpg", size: "600x400" %>
+			<p><%= simple_format(@post.text) %></p>
 
 			<%= form_for @post, url: post_path(@post.id),method: :patch do |f| %>
 
-				<%= f.hidden_field :user_id, value: current_user.id %>
 				<%= f.hidden_field :title %>
 				<%= f.hidden_field :text %>
 
-				<%= f.submit "編集完了" %>
+				<%= f.submit "この内容で編集する", class: "btn btn-info", style: "margin: 15px 0;" %>
 			<% end %>
 
 		</div>
