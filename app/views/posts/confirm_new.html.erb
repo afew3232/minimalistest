@@ -7,9 +7,11 @@
 				<p><%= flash[:notice] %></p>
 			<% end %>
 
-			<p>以下の内容でよろしいですか?</p>
+			<h3 class="common-title">確認画面</h3>
+			<p style="border-bottom:solid gray 2px;padding:10px;margin-bottom:10px;">以下の内容で表示されます。</p>
+
 			<h3><%= @post.title %></h3>
-			<p><%= @post.text %></p>
+			<p><%= simple_format(@post.text) %></p>
 
 			<%= form_for @post, url: posts_path do |f| %>
 
@@ -17,7 +19,7 @@
 				<%= f.hidden_field :title %>
 				<%= f.hidden_field :text %>
 
-				<%= f.submit "投稿" %>
+				<%= f.submit "この内容で投稿する", class: "btn btn-info" %>
 			<% end %>
 
 		</div>
