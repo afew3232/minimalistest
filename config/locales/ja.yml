@@ -14,3 +14,6 @@ ja:
         password_confirmation: 確認用パスワード
       tag:
         name: タグ名
+      post:
+        title: タイトル
+        text: 本文
