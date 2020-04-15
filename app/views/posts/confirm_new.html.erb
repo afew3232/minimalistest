@@ -1,7 +1,7 @@
 <%= render "home/header" %>
 
 <div class="container">
-	<div class="row">
+	<div class="row width-check">
 		<div class="col-sm-8 offset-sm-2">
 			<% if flash[:notice] %>
 				<p><%= flash[:notice] %></p>
@@ -11,6 +11,7 @@
 			<p style="border-bottom:solid gray 2px;padding:10px;margin-bottom:10px;">以下の内容で表示されます。</p>
 
 			<h3><%= @post.title %></h3>
+			<%= attachment_image_tag @post, :image, :limit, 600, 400, fallback: "post-no-image.jpg", size: "600x400" %>
 			<p><%= simple_format(@post.text) %></p>
 
 			<%= form_for @post, url: posts_path do |f| %>
@@ -19,7 +20,7 @@
 				<%= f.hidden_field :title %>
 				<%= f.hidden_field :text %>
 
-				<%= f.submit "この内容で投稿する", class: "btn btn-info" %>
+				<%= f.submit "この内容で投稿する", class: "btn btn-info", style: "margin: 15px 0;" %>
 			<% end %>
 
 		</div>

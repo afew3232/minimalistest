@@ -7,7 +7,7 @@
 
 			<h3 class="common-title">新しい記事</h3>
 
-			<%= form_for @post, url: posts_confirm_new_path, method: :get do |f| %>
+			<%= form_for @post, url: posts_confirm_new_path, method: :post do |f| %>
 				<div class="row">
 					<div class="col-sm-2">
 						<label>タイトル</label>
@@ -26,7 +26,11 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row" style="margin:15px 0;">
+					<%= f.attachment_field :image %>
+				</div>
+
+				<div class="row" style="margin:15px 0;">
 					<%= f.submit "確認画面へ", class: "btn btn-info" %>
 				</div>
 
