@@ -13,9 +13,14 @@
 			<h3 class="common-title">タグ一覧</h3>
 
 			<%= form_for @tag, url: admin_tags_path do |f| %>
-				<span><b>タグを追加</b></span>
-				<%= f.text_field :name %>
-				<%= f.submit "追加" %>
+			<div class="row">
+				<div class="col-sm-6">
+					<%= f.text_field :name, class: "form-control",placeholder: "新しいタグ" %>
+				</div>
+				<div class="col-sm-1">
+					<%= f.submit "追加", class: "btn btn-info" %>
+				</div>
+			</div>
 			<% end %>
 
 			<table class="table" style="margin-top:15px;">
@@ -28,8 +33,8 @@
 				<% @tags.each do |t| %>
 				<tr>
 					<td><%= t.name %></td>
-					<td><%= link_to "編集",edit_admin_tag_path(t.id) %></td>
-					<td><%= link_to "削除",admin_tag_path(t.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+					<td><%= link_to "編集",edit_admin_tag_path(t.id), class: "btn btn-info" %></td>
+					<td><%= link_to "削除",admin_tag_path(t.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-dark" %></td>
 				</tr>
 				<% end %>
 
