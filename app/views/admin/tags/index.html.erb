@@ -6,18 +6,21 @@
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
 			<%= render "devise/shared/error_messages", resource: @tag %>
-			<% if flash[:notice] %>
-				<p><%= flash[:notice] %></p>
+			<% if flash[:success] %>
+				<p><%= flash[:success] %></p>
 			<% end %>
 
+			<h3 class="common-title">タグ一覧</h3>
+
 			<%= form_for @tag, url: admin_tags_path do |f| %>
+				<span><b>タグを追加</b></span>
 				<%= f.text_field :name %>
 				<%= f.submit "追加" %>
 			<% end %>
 
-			<table class="table">
+			<table class="table" style="margin-top:15px;">
 				<tr>
-					<th>名前</th>
+					<th>タグ名</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -26,7 +29,7 @@
 				<tr>
 					<td><%= t.name %></td>
 					<td><%= link_to "編集",edit_admin_tag_path(t.id) %></td>
-					<td><%= link_to "削除",admin_tag_path(t.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+					<td><%= link_to "削除",admin_tag_path(t.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
 				</tr>
 				<% end %>
 
