@@ -69,3 +69,4 @@ gem "refile-mini_magick"
 gem "bootstrap"
 gem 'kaminari', '~> 1.1.1'
 gem 'rails-i18n'
+gem 'carrierwave'

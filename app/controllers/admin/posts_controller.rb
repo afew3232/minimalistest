@@ -13,6 +13,7 @@ class Admin::PostsController < ApplicationController
 
   def confirm_edit
   	@post = Post.new(params_post)
+    @post_image = @post.image
   	@post.id = params[:id]
   	unless @post.valid? #valid?(有効ですか?) == falseならrender :new
   		render :edit
@@ -20,7 +21,9 @@ class Admin::PostsController < ApplicationController
   end
 
   def update
+    byebug
   	@post = Post.find(params[:id])
+    @post.image = params[:post_image]
   	if @post.update(params_post)
   		redirect_to admin_post_path(@post.id)
   	else
@@ -37,7 +40,7 @@ class Admin::PostsController < ApplicationController
 
   private
   def params_post
-  	params.require(:post).permit(:title, :text)
+    params.require(:post).permit(:user_id, :title, :text, :image, :image_id)
   end
 
 end

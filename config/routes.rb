@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    get 'posts/confirm_edit'
+    post 'posts/confirm_edit'
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
     resources :tags, only: [:index, :edit, :update, :create, :destroy]
     resources :admins, only: [:show, :edit, :update]

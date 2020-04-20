@@ -16,6 +16,27 @@
 
 @import "bootstrap";
 
+.user-header{
+	position:sticky;
+	top:0;
+	z-index:100;
+}
+.admin-header{
+	position:sticky;
+	top:0;
+	z-index:100;
+}
+
+.post-sidebar{
+	margin-top:30px;
+	width:100%;
+	height:500px;
+	position:sticky;
+	top:86px;
+	box-shadow: 2px 2px 4px gray;
+}
+
+
 .common-title{
 	margin:15px 0;
 }
@@ -23,6 +44,42 @@
 .post-box{
 	background-color:white;
 	margin:30px;
-	height:200px;
 	box-shadow: 2px 2px 4px gray;
+}
+
+.post-box-image{
+	width:100%;
+}
+
+.post-box-title{
+	width:350px;
+	margin:10px;
+	float:left;
+	font-weight:bold;
+	font-size:1.3em;
+}
+
+
+.post-show-image-wrapper{
+	width:100%;
+	position: relative;
+	overflow:hidden;
+}
+.post-show-image-wrapper:before{
+    content:"";
+    display:block;
+    padding-top:66%;
+}
+.post-show-image{
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: inherit;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
