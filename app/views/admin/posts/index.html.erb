@@ -8,13 +8,28 @@
 			<% end %>
 
 			<div class="row">
-				<h3>記事一覧</h3>
+				<h3 class="common-title">記事一覧</h3>
 			</div>
 
+			<table>
+				<tr>
+					<th>タイトル</th>
+					<th>作成者</th>
+					<th></th>
+					<th></th>
+				</tr>
+
 			<% @posts.each do |p| %>
-				<%= link_to p.title, admin_post_path(p.id) %>
-				<%= link_to "削除", admin_post_path(p.id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+				<tr>
+					<td><%= link_to p.title, admin_post_path(p.id) %></td>
+					<td></td>
+					<td><%= link_to "編集", edit_admin_post_path(p.id), class: "btn btn-info" %> </td>
+					<td><%= link_to "削除", admin_post_path(p.id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %></td>
+				</tr>
 			<% end %>
+
+
+			</table>
 
 
 

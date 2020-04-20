@@ -5,21 +5,23 @@
 		<div class="col-sm-8 offset-sm-2">
 
 			<div class="row">
-				<h3>会員一覧</h3>
+				<h3 class="common-title">会員一覧</h3>
 			</div>
 
-			<table>
+			<table class="table">
 				<tr>
 					<th>id</th>
-					<th>email</th>
-					<th></th>
+					<th>ニックネーム</th>
+					<th>氏名</th>
+					<th>メールアドレス</th>
 				</tr>
 
 				<% @users.each do |u| %>
 				<tr>
 					<td><%= u.id %></td>
-					<td><%= link_to u.email, admin_user_path(u.id) %></td>
-					<td></td>
+					<td><%= link_to u.nickname, admin_user_path(u.id) %></td>
+					<td><%= u.lastname %> <%= u.firstname %></td>
+					<td><%= u.email %></td>
 				</tr>
 				<% end %>
 

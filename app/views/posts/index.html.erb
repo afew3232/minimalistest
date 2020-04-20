@@ -5,9 +5,18 @@
 		<div class="col-sm-3">
 			<%= render "home/sidebar" %>
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-9">
 			<% @posts.each do |p| %>
-				<%= p.title %>
+			<div class="post-box">
+				<div class ="row">
+					<div class="col-sm-5">
+						<%= attachment_image_tag p, :image, fallback: "post-no-image.jpg", class: "post-box-image" %>
+					</div>
+					<div class="col-sm-7">
+						<h4 class="post-box-title"><%= p.title %></h4>
+					</div>
+				</div>
+			</div>
 			<% end %>
 		</div>
 	</div>

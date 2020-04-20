@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
 			<h3 class="common-title"><%= @post.title %></h3>
-			<%= attachment_image_tag @post, :image, :limit, 600, 400, fallback: "post-no-image.jpg", size: "600x400" %>
+			<%= attachment_image_tag @post, :image, fallback: "post-no-image.jpg", class: "post-show-image"%>
 			<p><%= simple_format(@post.text) %></p>
 
 			<!--自分の記事 → 編集リンク-->

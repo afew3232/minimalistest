@@ -4,27 +4,54 @@
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
 			<div class="row">
-				<h3>会員詳細情報</h3>
+				<h3 class="common-title">会員詳細情報</h3>
 			</div>
 			<div class="row">
-				<div class="col-sm-2">
-					<p><b>id</b></p>
+				<div class="col-sm-4">
+					<p><b>ID</b></p>
 				</div>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
 					<p><%= @user.id %></p>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-sm-2">
-					<p><b>email</b></p>
+				<div class="col-sm-4">
+					<p><b>ニックネーム</b></p>
 				</div>
-				<div class="col-sm-10">
+				<div class="col-sm-8">
+					<p><%= @user.nickname %></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>メールアドレス</b></p>
+				</div>
+				<div class="col-sm-8">
 					<p><%= @user.email %></p>
 				</div>
 			</div>
 
-			<%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-primary" %>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>名前</b></p>
+				</div>
+				<div class="col-sm-8">
+					<p><%= @user.lastname %> <%= @user.firstname %></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>名前(カナ)</b></p>
+				</div>
+				<div class="col-sm-8">
+					<p><%= @user.lastname_kana %> <%= @user.firstname_kana %></p>
+				</div>
+			</div>
+
+			<%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-info" %>
 
 		</div>
 	</div>
