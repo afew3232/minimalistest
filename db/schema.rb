@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2020_04_21_043403) do
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_id"
     t.string "post_image"
   end
 
