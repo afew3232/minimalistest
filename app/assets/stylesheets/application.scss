@@ -41,16 +41,15 @@
 	margin:15px 0;
 }
 
+
+//---------記事一覧中の記事ボックス---------
 .post-box{
 	background-color:white;
 	margin:30px;
 	box-shadow: 2px 2px 4px gray;
 }
 
-.post-box-image{
-	width:100%;
-}
-
+//---------記事一覧中の記事タイトル---------
 .post-box-title{
 	width:350px;
 	margin:10px;
@@ -59,7 +58,15 @@
 	font-size:1.3em;
 }
 
+//---------linkのテキストの「青字」「下線」を削除---------
+.no-decoration-link{
+	color:black;
+}
+.no-decoration-link:hover{
+	text-decoration:none;
+}
 
+//---------記事の画像---------
 .post-show-image-wrapper{
 	width:100%;
 	position: relative;
@@ -71,7 +78,7 @@
     padding-top:66%;
 }
 .post-show-image{
-    width: auto;
+    width: 100%;
     height: auto;
     min-width: 100%;
     min-height: 100%;

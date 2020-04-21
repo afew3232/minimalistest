@@ -10,10 +10,18 @@
 			<div class="post-box">
 				<div class ="row">
 					<div class="col-sm-5">
-						<%= attachment_image_tag p, :image, fallback: "post-no-image.jpg", class: "post-box-image" %>
+						<%= link_to post_path(p.id) do %>
+						<div class="post-show-image-wrapper">
+							<% unless p.post_image.file.nil? %>
+								<img src="<%= p.post_image %>", class="post-show-image">
+							<% else %>
+								<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
+							<% end %>
+						</div>
+						<% end %>
 					</div>
 					<div class="col-sm-7">
-						<h4 class="post-box-title"><%= p.title %></h4>
+						<h4 class="post-box-title"><%= link_to p.title, post_path(p.id), class: "no-decoration-link" %></h4>
 					</div>
 				</div>
 			</div>
