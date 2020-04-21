@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 
   def create
   	@post = Post.new(params_post)
+    @post.post_image.retrieve_from_cache! params[:cache][:post_image]
   	if @post.save
   		redirect_to post_path(@post.id)
   	else
@@ -44,6 +45,7 @@ class PostsController < ApplicationController
 
   def update
   	@post = Post.find(params[:id])
+    @post.post_image.retrieve_from_cache! params[:cache][:post_image]
   	if @post.update(params_post)
   		redirect_to post_path(@post.id)
   	else
@@ -54,7 +56,7 @@ class PostsController < ApplicationController
 
   private
   def params_post
-  	params.require(:post).permit(:user_id, :title, :text, :image)
+  	params.require(:post).permit(:user_id, :title, :text, :post_image)
   end
 
 end

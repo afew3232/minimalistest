@@ -2,5 +2,6 @@ class Post < ApplicationRecord
 	validates :title, presence: true
 	validates :text, presence: true
 
-	attachment :image
+	#carrierwave
+	mount_uploader :post_image, PostImageUploader
 end

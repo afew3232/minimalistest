@@ -21,9 +21,8 @@ class Admin::PostsController < ApplicationController
   end
 
   def update
-    byebug
   	@post = Post.find(params[:id])
-    @post.image = params[:post_image]
+    @post.post_image.retrieve_from_cache! params[:cache][:post_image]
   	if @post.update(params_post)
   		redirect_to admin_post_path(@post.id)
   	else
@@ -40,7 +39,7 @@ class Admin::PostsController < ApplicationController
 
   private
   def params_post
-    params.require(:post).permit(:user_id, :title, :text, :image, :image_id)
+    params.require(:post).permit(:user_id, :title, :text, :post_image)
   end
 
 end
