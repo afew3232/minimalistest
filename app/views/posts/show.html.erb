@@ -17,7 +17,7 @@
 			<!--自分の記事 → 編集リンク-->
 			<% if user_signed_in? %>
 				<% if current_user.id == @post.user_id %>
-					<%= link_to "この記事を編集する", edit_post_path, class: "btn btn-info" %>
+					<%= link_to "この記事を編集する", edit_post_path, class: "btn btn-info", style: "margin:15px 0;" %>
 				<% end %>
 			<% end %>
 
