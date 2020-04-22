@@ -14,6 +14,11 @@
 
 			<p><%= simple_format(@post.text) %></p>
 
+			<!--ajax対応のいいね　posts/post_favoriteを renderする-->
+			<div id="post-show-favorite-ajax-<%= @post.id %>">
+				<%= render partial: "posts/post_favorite", locals: {post: @post} %>
+			</div>
+
 			<!--自分の記事 → 編集リンク-->
 			<% if user_signed_in? %>
 				<% if current_user.id == @post.user_id %>
