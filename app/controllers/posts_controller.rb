@@ -2,9 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :confirm_new, :confirm_edit]
 
   def index
-    byebug
-  	@posts = Post.all
-    #@post_rank = Post.find(Favorite.limit(4).order('sum_number desc').group(:post_id).sum(:number).keys)
+    @posts = Post.all.order(created_at: "DESC")
+    @post_rank = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
   end
 
   def show

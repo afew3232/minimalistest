@@ -51,11 +51,10 @@
 
 //---------記事一覧中の記事タイトル---------
 .post-box-title{
-	width:350px;
+	width:90%;
 	margin:10px;
 	float:left;
 	font-weight:bold;
-	font-size:1.3em;
 }
 
 //---------linkのテキストの「青字」「下線」を削除---------
@@ -89,4 +88,16 @@
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+}
+
+.sidebar-box{
+	background-color:white;
+	margin:5px;
+	box-shadow: 2px 2px 4px gray;
+}
+
+.sidebar-box-title{
+	width:90%;
+	margin:3px;
+	float:left;
 }

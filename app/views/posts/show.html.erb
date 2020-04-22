@@ -19,6 +19,8 @@
 				<%= render partial: "posts/post_favorite", locals: {post: @post} %>
 			</div>
 
+			<p><b>この記事の投稿者：<%=link_to @post.user.nickname, admin_user_path(@post.user_id) %></b></p>
+
 			<!--自分の記事 → 編集リンク-->
 			<% if user_signed_in? %>
 				<% if current_user.id == @post.user_id %>

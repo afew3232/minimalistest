@@ -6,9 +6,11 @@
 			<%= render "home/sidebar" %>
 		</div>
 		<div class="col-sm-9">
+
 			<% @posts.each do |p| %>
 			<div class="post-box">
 				<div class ="row">
+
 					<div class="col-sm-5">
 						<%= link_to post_path(p.id) do %>
 						<div class="post-show-image-wrapper">
@@ -20,12 +22,15 @@
 						</div>
 						<% end %>
 					</div>
-					<div class="col-sm-7">
+
+					<div class="col-sm-7" style="padding-left:0px;">
 						<h4 class="post-box-title"><%= link_to p.title, post_path(p.id), class: "no-decoration-link" %></h4>
 					</div>
+
 				</div>
 			</div>
 			<% end %>
+
 		</div>
 	</div>
 </div>
