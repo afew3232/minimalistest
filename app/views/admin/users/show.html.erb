@@ -53,6 +53,24 @@
 
 			<%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-info" %>
 
+			<div class="row">
+				<h3 class="common-title">投稿した記事</h3>
+			</div>
+			<table class="table">
+				<tr>
+					<th>タイトル</th>
+					<th>いいね数</th>
+					<th></th>
+				</tr>
+			<% @posts.each do |p| %>
+				<tr>
+					<td><%= link_to p.title, admin_post_path(p.id) %></td>
+					<td>good数：<%= favorited_count(p.id) %></td>
+					<td><%= link_to "編集", edit_admin_post_path(p.id), class: "btn btn-info" %></td>
+				</tr>
+			<% end %>
+			</table>
+
 		</div>
 	</div>
 </div>

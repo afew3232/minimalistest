@@ -12,8 +12,10 @@
 					<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
 				<% end %>
 			</div>
-			
+
 			<p><%= simple_format(@post.text) %></p>
+
+			<p><b>この記事の投稿者：<%=link_to @post.user.nickname, admin_user_path(@post.user_id) %></b></p>
 
 			<%= link_to "編集", edit_admin_post_path, class: "btn btn-info", style: "margin:15px 0;" %>
 
