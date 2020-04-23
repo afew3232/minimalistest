@@ -1,14 +1,15 @@
 <%= render "home/header" %>
 
+<div class="about-background">
+		<h1 style="font-size:8em;text-align:center; padding-top:100px;"><%= link_to "Minimalistest", home_about_path,class: "no-decoration-link text-info" %></h1>
+</div>
+
 <div class="container">
-	<div class="row">
-		<h5 style="margin:10px;"><%= link_to "Minimalistestとは？", home_about_path,class: "no-decoration-link" %></h5>
-	</div>
 
 	<div class="row">
 
 		<div class="col-sm-6">
-			<h2 class="common-title" style="text-align:center">Ranking</h2>
+			<h2 class="common-title" style="text-align:center">RANKING</h2>
 			<% @post_rank.each do |p| %>
 			<div class="post-box">
 				<div class ="row">

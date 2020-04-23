@@ -5,10 +5,16 @@ class PostsController < ApplicationController
     @post_rank = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
 
     case params[:call]
-    when "new" then
+    when "new" then #新着記事
       @posts = Post.all.order(created_at: "DESC")
-    when "tag" then
+      @word = "New Posts"
+    when "tag" then #タグ検索
       @posts = Post.find(LinkTag.where(tag_id: params[:tag_id]).pluck(:post_id))
+      tag = Tag.find(params[:tag_id])
+      @word = tag.name
+    when "search" then #検索
+      @word = params[:word]
+      @posts = Post.where(["title LIKE ? OR text LIKE ?", "%#{@word}%", "%#{@word}%"])
     else #例外処理
       flash[:danger] = "不正な呼び出し"
       @posts = Post.all.order(created_at: "DESC")

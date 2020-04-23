@@ -21,11 +21,15 @@
 			<p><%= simple_format(@post.text) %></p>
 
 			<!--ajax対応のいいね　posts/post_favoriteを renderする-->
-			<div id="post-show-favorite-ajax-<%= @post.id %>">
-				<%= render partial: "posts/post_favorite", locals: {post: @post} %>
-			</div>
+			<% if user_signed_in? %>
+				<% if current_user.id != @post.user_id %>
+					<div id="post-show-favorite-ajax-<%= @post.id %>">
+						<%= render partial: "posts/post_favorite", locals: {post: @post} %>
+					</div>
+				<% end %>
+			<% end %>
 
-			<p><b>この記事の投稿者：<%=link_to @post.user.nickname, admin_user_path(@post.user_id) %></b></p>
+			<p><b>この記事の投稿者：<%=link_to @post.user.nickname, user_path(@post.user_id) %></b></p>
 
 			<!--自分の記事 → 編集リンク-->
 			<% if user_signed_in? %>

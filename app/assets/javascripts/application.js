@@ -19,15 +19,32 @@
 
 $(document).on('turbolinks:load', function() {
 
+	//header tagをクリックで発火 タグ一覧表示する
 	$(function() {
 	    $('.tag-toggle').click(function() {
 	        $(this).toggleClass('active');
+
 	        if ($(this).hasClass('active')) {
 	            $('.tag-menu').addClass('active');
-	            $('.tag-toggle').addClass('active');
+	            $('.search-menu').removeClass('active');
+	            $('.search-toggle').removeClass('active');
 	        } else {
 	            $('.tag-menu').removeClass('active');
+	        }
+	    });
+	});
+
+	//header searchをクリックで発火 検索欄表示
+	$(function() {
+	    $('.search-toggle').click(function() {
+	        $(this).toggleClass('active');
+
+	        if ($(this).hasClass('active')) {
+	            $('.search-menu').addClass('active');
+	            $('.tag-menu').removeClass('active');
 	            $('.tag-toggle').removeClass('active');
+	        } else {
+	            $('.search-menu').removeClass('active');
 	        }
 	    });
 	});
