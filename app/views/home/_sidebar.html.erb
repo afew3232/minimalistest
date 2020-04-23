@@ -1,29 +1,30 @@
 <div class="post-sidebar">
-	<h4 style="text-align:center;padding:15px;">ランキング</h4>
+	<h4 style="text-align:center;padding-top:5px;"><b>RANKING</b></h4>
 
 	<% @post_rank.each_with_index do |p,i| %>
-			<b>#<%= i+1 %>.</b>
-			<div class="sidebar-box">
-				<div class ="row">
-
-					<div class="col-sm-4" style="padding-right:0px;">
-						<%= link_to post_path(p.id) do %>
-						<div class="post-show-image-wrapper">
-							<% unless p.post_image.file.nil? %>
-								<img src="<%= p.post_image %>", class="post-show-image">
-							<% else %>
-								<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
-							<% end %>
-						</div>
-						<% end %>
-					</div>
-
-					<div class="col-sm-8" style="padding-left:0px;">
-						<small class="sidebar-box-title"><%= link_to p.title, post_path(p.id), class: "no-decoration-link" %></small>
-					</div>
-
+	<small>#<%= i+1 %>.</small>
+	<div class="sidebar-box">
+		<div class ="row">
+			<div class="col-sm-4" style="padding-right:0px;">
+				<%= link_to post_path(p.id) do %>
+				<div class="post-show-image-wrapper">
+					<% unless p.post_image.file.nil? %>
+					<img src="<%= p.post_image %>", class="post-show-image">
+					<% else %>
+					<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
+					<% end %>
 				</div>
+				<% end %>
 			</div>
+
+			<div class="col-sm-8" style="padding-left:0px;">
+				<small class="sidebar-box-title">
+					<div class="col-sm-1">
+					</div><%= link_to p.title, post_path(p.id), class: "no-decoration-link" %></small>
+				</div>
+
+			</div>
+		</div>
 	<% end %>
 
 </div>

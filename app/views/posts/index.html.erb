@@ -5,11 +5,19 @@
 <% end %>
 
 <div class="container">
+
 	<div class="row">
-		<div class="col-sm-3">
+
+		<div class="col-sm-3" style="padding:0px;">
 			<%= render "home/sidebar" %>
 		</div>
 		<div class="col-sm-9">
+
+	<div class="row">
+		<% if @word %>
+			<h3 class="common-title" style="margin:25px auto"><b><%= @word %></b></h3>
+		<% end %>
+	</div>
 
 			<% @posts.each do |p| %>
 			<div class="post-box">
