@@ -4,6 +4,12 @@
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
 			<h3 class="common-title"><%= @post.title %></h3>
+
+			<small>タグ：</small>
+			<% @tag.each do |t| %>
+				<small><%= t.name %></small>
+			<% end %>
+
 			<div class="post-show-image-wrapper">
 				<% unless @post.post_image.file.nil? %>
 					<img src="<%= @post.post_image %>", class="post-show-image">

@@ -1,6 +1,5 @@
 class Tag < ApplicationRecord
-
-	belongs_to :post
+	has_many :link_tag, dependent: :destroy
 
 	validates :name, presence: true
 end

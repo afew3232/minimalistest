@@ -26,6 +26,15 @@
 					</div>
 				</div>
 
+				<div class="row" style="margin-top:15px;">
+					<div class="col-sm-2">
+						<label>タグ</label>
+					</div>
+					<div class="col-sm-10">
+						<%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name , 1), class: "form-control" %>
+					</div>
+				</div>
+
 				<div class="row" style="margin:15px 0;">
 					<%= f.file_field :post_image %>
 				</div>
