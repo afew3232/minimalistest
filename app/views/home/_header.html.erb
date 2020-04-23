@@ -1,35 +1,34 @@
 <header class="user-header">
-  <nav class="navbar navbar-expand bg-light" style="box-shadow: 2px 2px 4px gray;"> <!--navbarでflexbox-->
+  <nav class="navbar navbar-expand bg-light" style="box-shadow: 2px 2px 4px gray;padding:0"> <!--navbarでflexbox-->
 
     <ul class="nav navbar-collapse justify-content-start"> <!--左寄せ-->
       <%= link_to root_path, class: "nav-link", style: "padding: 0px;color:black;" do %>
-        <div style="font-size: 25px;"><b>Minimalistest</b></div>
+        <div style="font-size: 25px;margin-left:20"><b>Minimalistest</b></div>
       <% end %>
     </ul>
 
     <ul class="nav navbar-collapse justify-content-end"> <!--右寄せ-->
 
       <% if user_signed_in? %>
-        <li class="nav-link"><%= link_to "MyPage",user_path(current_user.id) %></li>
         <li class="nav-link"><%= link_to "新規記事",
-        posts_path %></li>
-        <li class="nav-link">タグ</li>
+        posts_path(call: "new"), class: "no-decoration-link" %></li>
+        <li class="nav-link tag-toggle no-decoration-link">タグ</li>
         <li class="nav-link"><%= link_to "記事を投稿する",
-        new_post_path %></li>
+        new_post_path, class: "no-decoration-link" %></li>
+        <li class="nav-link"><%= link_to "MyPage",user_path(current_user.id), class: "no-decoration-link" %></li>
         <li class="nav-link"><%= link_to "ログアウト",
-        destroy_user_session_path , method: :delete %></li>
+        destroy_user_session_path , method: :delete, class: "no-decoration-link" %></li>
         <li>
           <input placeholder="Search">
         </li>
 
       <% else %>
-        <li class="nav-link"><%= link_to "新規記事",
-        posts_path %></li>
-        <li class="nav-link">タグ</li>
+        <li class="nav-link"><%= link_to "新規記事", posts_path, class: "no-decoration-link" %></li>
+        <li class="nav-link tag-toggle no-decoration-link">タグ</li>
         <li class="nav-link"><%= link_to "会員登録",
-        new_user_registration_path %></li>
+        new_user_registration_path, class: "no-decoration-link" %></li>
         <li class="nav-link"><%= link_to "ログイン",
-        new_user_session_path %></li>
+        new_user_session_path, class: "no-decoration-link" %></li>
         <li>
           <input placeholder="Search">
         </li>
@@ -38,4 +37,17 @@
     </ul>
 
   </nav>
+
 </header>
+
+<!--タグメニュー headerのタグをクリックするとjsが発火して見える-->
+<div class="tag-menu">
+  <nav class="navbar navbar-expand" style="box-shadow: 2px 2px 4px gray;background-color:#ddd">
+    <ul class="nav navbar-collapse">
+      <% Tag.all.each do |t| %>
+        <li class="nav-link" style="margin:0 10px;"><%= link_to t.name, posts_path(call: "tag",tag_id: t.id), class: "no-decoration-link" %></li>
+      <% end %>
+    </ul>
+
+  </nav>
+</div>

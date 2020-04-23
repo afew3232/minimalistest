@@ -16,3 +16,20 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+
+	$(function() {
+	    $('.tag-toggle').click(function() {
+	        $(this).toggleClass('active');
+	        if ($(this).hasClass('active')) {
+	            $('.tag-menu').addClass('active');
+	            $('.tag-toggle').addClass('active');
+	        } else {
+	            $('.tag-menu').removeClass('active');
+	            $('.tag-toggle').removeClass('active');
+	        }
+	    });
+	});
+
+});
