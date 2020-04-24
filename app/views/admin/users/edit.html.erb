@@ -10,58 +10,68 @@
 			</div>
 
 			<%= form_for @user,url: admin_user_path(@user.id) do |f| %>
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>ID</b></p>
-					</div>
-					<div class="col-sm-8">
-						<p><%= @user.id %></p>
-					</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>ID</b></p>
 				</div>
-
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>ニックネーム</b></p>
-					</div>
-					<div class="col-sm-8">
-						<p><%= f.text_field :nickname, class: "form-control" %></p>
-					</div>
+				<div class="col-sm-8">
+					<p><%= @user.id %></p>
 				</div>
+			</div>
 
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>メールアドレス</b></p>
-					</div>
-					<div class="col-sm-8">
-						<p><%= f.text_field :email, class: "form-control"  %></p>
-					</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>ニックネーム</b></p>
 				</div>
-
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>名前</b></p>
-					</div>
-					<div class="col-sm-4">
-						<p><%= f.text_field :lastname, class: "form-control"  %></p>
-					</div>
-					<div class="col-sm-4">
-						<p><%= f.text_field :firstname, class: "form-control"  %></p>
-					</div>
+				<div class="col-sm-8">
+					<p><%= f.text_field :nickname, class: "form-control" %></p>
 				</div>
+			</div>
 
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>名前(カナ)</b></p>
-					</div>
-					<div class="col-sm-4">
-						<p><%= f.text_field :lastname_kana, class: "form-control"  %></p>
-					</div>
-					<div class="col-sm-4">
-						<p><%= f.text_field :firstname_kana, class: "form-control"  %></p>
-					</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>メールアドレス</b></p>
 				</div>
+				<div class="col-sm-8">
+					<p><%= f.text_field :email, class: "form-control"  %></p>
+				</div>
+			</div>
 
-				<%= f.submit "編集完了", class: "btn btn-info" %>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>名前</b></p>
+				</div>
+				<div class="col-sm-4">
+					<p><%= f.text_field :lastname, class: "form-control"  %></p>
+				</div>
+				<div class="col-sm-4">
+					<p><%= f.text_field :firstname, class: "form-control"  %></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>名前(カナ)</b></p>
+				</div>
+				<div class="col-sm-4">
+					<p><%= f.text_field :lastname_kana, class: "form-control"  %></p>
+				</div>
+				<div class="col-sm-4">
+					<p><%= f.text_field :firstname_kana, class: "form-control"  %></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>会員ステータス</b></p>
+				</div>
+				<div class="col-sm-8">
+					<span><%= f.radio_button :status, true %>有効</span>
+					<span><%= f.radio_button :status, false %>退会</span>
+				</div>
+			</div>
+
+			<%= f.submit "編集完了", class: "btn btn-info" %>
 			<% end %>
 
 		</div>

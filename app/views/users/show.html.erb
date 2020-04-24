@@ -7,6 +7,12 @@
 				<h3 class="common-title">ユーザー情報</h3>
 			</div>
 
+			<% if @user.status == false %>
+			<div class="row">
+				<p>退会済ユーザー</p>
+			</div>
+			<% end %>
+
 			<div class="row">
 				<div class="col-sm-4">
 					<p><b>ニックネーム</b></p>
@@ -15,7 +21,6 @@
 					<p><%= @user.nickname %></p>
 				</div>
 			</div>
-
 
 			<!--自分のページだった場合のみ表示する　email、氏名、編集リンク-->
 			<% if user_signed_in? %>
