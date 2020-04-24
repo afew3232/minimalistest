@@ -1,4 +1,5 @@
 class Admin::TagsController < ApplicationController
+  before_action :authenticate_admin!, only: [:index, :create, :edit, :update, :destroy]
   def index
   	@tag = Tag.new
   	@tags = Tag.all
