@@ -12,7 +12,7 @@ class Admin::PostsController < ApplicationController
   def edit
   	@post = Post.find(params[:id])
     @tags = Tag.all
-    @tag = Tag.find(LinkTag.find_by(post_id: @post.id).tag_id)
+    @tag = Tag.find(LinkTag.where(post_id: @post.id).pluck(:tag_id))
   end
 
   def confirm_edit
