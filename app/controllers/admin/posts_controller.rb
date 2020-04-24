@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!, only: [:index, :show, :edit, :confirm_edit, :update, :destroy]
   def index
     @posts = Post.all.includes(:user)
   end

@@ -1,4 +1,5 @@
 class Admin::AdminsController < ApplicationController
+  before_action :authenticate_admin!, only: [:show, :edit, :update]
   def show
   	@admin = Admin.find(params[:id])
   end
