@@ -16,9 +16,9 @@ class PostsController < ApplicationController
     when "search" then #検索
       @word = params[:word] #ユーザの入力を@wordへ代入
       @posts = Post.where(["title LIKE ? OR text LIKE ?", "%#{@word}%", "%#{@word}%"])
-    else #例外処理
-      flash[:danger] = "不正な呼び出し"
-      #記事は取得しない
+    else #例外処理 URLから直接入力
+      @posts = Post.all.order(created_at: "DESC")
+      @word = "New Posts"
     end
 
   end
@@ -44,7 +44,8 @@ class PostsController < ApplicationController
 
   def create
   	@post = Post.new(params_post)
-    @post.post_image.retrieve_from_cache! params[:cache][:post_image] unless @post.post_image.file.nil?
+    # 画像がない　→　params[:cache][:post_image] == "" になる。
+    @post.post_image.retrieve_from_cache! params[:cache][:post_image] unless params[:cache][:post_image]==""
   	if @post.save
       LinkTag.create(post_id: @post.id, tag_id: params[:tag_id])
   		redirect_to post_path(@post.id)
@@ -71,7 +72,8 @@ class PostsController < ApplicationController
 
   def update
   	@post = Post.find(params[:id])
-    @post.post_image.retrieve_from_cache! params[:cache][:post_image] unless @post.post_image.file.nil?
+    @post.update_columns(post_image: nil)
+    @post.post_image.retrieve_from_cache! params[:cache][:post_image] unless params[:cache][:post_image]==""
   	if @post.update(params_post)
       @post.link_tag.destroy_all #updateした@postに関連付けされているLinkTagをすべて削除
       LinkTag.create(post_id: @post.id, tag_id: params[:tag_id])
