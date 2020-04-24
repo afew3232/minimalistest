@@ -35,16 +35,17 @@
     </ul>
 
   </nav>
-
 </header>
 
 <!--タグメニュー headerのTagをクリックするとjsが発火して出現-->
 <div class="tag-menu">
   <nav class="navbar navbar-expand" style="box-shadow: 2px 2px 4px gray;background-color:#ddd;padding:0;">
     <ul class="nav navbar-collapse">
+
       <% Tag.all.each do |t| %>
         <li class="nav-link" style="margin:0 10px;"><%= link_to "##{t.name}", posts_path(call: "tag",tag_id: t.id), class: "no-decoration-link btn btn-light", style: "padding:0;" %></li>
       <% end %>
+
     </ul>
   </nav>
 </div>
@@ -53,11 +54,13 @@
 <div class="search-menu">
   <nav class="navbar navbar-expand" style="box-shadow: 2px 2px 4px gray;background-color:#ddd;padding:0;">
     <div style="margin:5px 0 5px auto;">
+
       <%= form_tag posts_path, method: :get do |f| %>
         <%= hidden_field_tag :call, "search" %>
         <%= text_field_tag :word,"", placeholder: "Search" %>
         <%= submit_tag "Search" %>
       <% end %>
+
     </div>
   </nav>
 </div>

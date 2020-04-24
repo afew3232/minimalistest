@@ -1,8 +1,6 @@
 <%= render "admin/home/header" %>
 <%= render "home/flash_message" %>
 
-
-
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
@@ -35,7 +33,6 @@
 					<td><%= link_to "削除",admin_tag_path(t.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-dark" %></td>
 				</tr>
 				<% end %>
-
 			</table>
 
 		</div>

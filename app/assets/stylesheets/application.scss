@@ -16,6 +16,7 @@
 
 @import "bootstrap";
 
+//----------header----------
 .user-header{
 	position:sticky;
 	top:0;
@@ -27,9 +28,11 @@
 	z-index:100;
 }
 
+//----------headerのオブジェクト マウスオーバー時 色変更----------
 .header-nav-link:hover{
 	background-color:#eee;
 }
+
 //-----------タグ選択用メニュー----------
 .tag-toggle{
 	cursor:pointer;
@@ -37,7 +40,6 @@
 .tag-toggle.active{
 	background-color:#ddd;
 }
-
 .tag-menu{
     position: fixed;
     z-index: 99;
@@ -46,7 +48,7 @@
     transform: translateY(-100%);
     transition: all 0.2s;
 }
-.tag-menu.active {
+.tag-menu.active { //tag-toggleと同時にactive, application.js参照
     transform: translateY(0%);
 }
 
@@ -57,7 +59,6 @@
 .search-toggle.active{
 	background-color:#ddd;
 }
-
 .search-menu{
     position: fixed;
     z-index: 99;
@@ -66,7 +67,7 @@
     transform: translateY(-100%);
     transition: all 0.2s;
 }
-.search-menu.active {
+.search-menu.active { //search-toggleと同時にactive, application.js参照
     transform: translateY(0%);
 }
 
@@ -90,12 +91,10 @@
 	float:left;
 }
 
-
 //----------タイトル----------
 .common-title{
 	margin:15px 0;
 }
-
 
 //---------記事一覧中の記事ボックス---------
 .post-box{
@@ -121,7 +120,7 @@
 	color:gray;
 }
 
-//---------記事の画像---------
+//---------画像表示---------
 .post-show-image-wrapper{
 	width:100%;
 	position: relative;

@@ -8,13 +8,14 @@
 		<div class="col-sm-3" style="padding:0px;">
 			<%= render "home/sidebar" %>
 		</div>
+
 		<div class="col-sm-9">
 
-	<div class="row">
-		<% if @word %>
-			<h3 class="common-title" style="margin:25px auto"><b><%= @word %></b></h3>
-		<% end %>
-	</div>
+			<div class="row">
+				<% if @word %>
+				<h3 class="common-title" style="margin:25px auto"><b><%= @word %></b></h3>
+				<% end %>
+			</div>
 
 			<% @posts.each do |p| %>
 			<div class="post-box">
@@ -24,9 +25,9 @@
 						<%= link_to post_path(p.id) do %>
 						<div class="post-show-image-wrapper">
 							<% unless p.post_image.file.nil? %>
-								<img src="<%= p.post_image %>", class="post-show-image">
+							<img src="<%= p.post_image %>", class="post-show-image">
 							<% else %>
-								<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
+							<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
 							<% end %>
 						</div>
 						<% end %>

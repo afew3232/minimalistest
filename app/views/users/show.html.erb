@@ -6,6 +6,7 @@
 			<div class="row">
 				<h3 class="common-title">ユーザー情報</h3>
 			</div>
+
 			<div class="row">
 				<div class="col-sm-4">
 					<p><b>ニックネーム</b></p>
@@ -48,24 +49,25 @@
 					<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-info" %>
 			<% end %>
 
-
 			<div class="row">
 				<h3 class="common-title" style="margin-top:40px;">投稿した記事</h3>
 			</div>
+
 			<table class="table">
 				<tr>
 					<th>タイトル</th>
 					<th>いいね数</th>
 					<th></th>
 				</tr>
-			<% @posts.each do |p| %>
-				<tr>
-					<td><%= link_to p.title, post_path(p.id) %></td>
-					<td>good数：<%= favorited_count(p.id) %></td>
-					<td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-info" %></td>
-				</tr>
-			<% end %>
+				<% @posts.each do |p| %>
+					<tr>
+						<td><%= link_to p.title, post_path(p.id) %></td>
+						<td>good数：<%= favorited_count(p.id) %></td>
+						<td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-info" %></td>
+					</tr>
+				<% end %>
 			</table>
+
 		</div>
 	</div>
 </div>
