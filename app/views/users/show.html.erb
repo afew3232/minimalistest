@@ -18,35 +18,37 @@
 
 
 			<!--自分のページだった場合のみ表示する　email、氏名、編集リンク-->
+			<% if user_signed_in? %>
 			<% if current_user.id == @user.id %>
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>メールアドレス</b></p>
-					</div>
-					<div class="col-sm-8">
-						<p><%= @user.email %></p>
-					</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>メールアドレス</b></p>
 				</div>
-
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>名前</b></p>
-					</div>
-					<div class="col-sm-8">
-						<p><%= @user.lastname %> <%= @user.firstname %></p>
-					</div>
+				<div class="col-sm-8">
+					<p><%= @user.email %></p>
 				</div>
+			</div>
 
-				<div class="row">
-					<div class="col-sm-4">
-						<p><b>名前(カナ)</b></p>
-					</div>
-					<div class="col-sm-8">
-						<p><%= @user.lastname_kana %> <%= @user.firstname_kana %></p>
-					</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>名前</b></p>
 				</div>
+				<div class="col-sm-8">
+					<p><%= @user.lastname %> <%= @user.firstname %></p>
+				</div>
+			</div>
 
-					<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-info" %>
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>名前(カナ)</b></p>
+				</div>
+				<div class="col-sm-8">
+					<p><%= @user.lastname_kana %> <%= @user.firstname_kana %></p>
+				</div>
+			</div>
+
+			<%= link_to "編集", edit_user_path(@user.id), class: "btn btn-info" %>
+			<% end %>
 			<% end %>
 
 			<div class="row">
@@ -60,11 +62,21 @@
 					<th></th>
 				</tr>
 				<% @posts.each do |p| %>
-					<tr>
-						<td><%= link_to p.title, post_path(p.id) %></td>
-						<td>good数：<%= favorited_count(p.id) %></td>
-						<td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-info" %></td>
-					</tr>
+				<tr>
+					<td><%= link_to p.title, post_path(p.id) %></td>
+					<td>good数：<%= favorited_count(p.id) %></td>
+
+					<% if user_signed_in? %>
+						<% if current_user.id == @user.id %>
+							<td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-info" %></td>
+						<% else %>
+							<td></td>
+						<% end %>
+					<% else %>
+						<td></td>
+					<% end %>
+
+				</tr>
 				<% end %>
 			</table>
 
