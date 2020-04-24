@@ -1,11 +1,9 @@
 <%= render "admin/home/header" %>
+<%= render "home/flash_message" %>
 
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
-			<% if flash[:notice] %>
-				<p><%= flash[:notice] %></p>
-			<% end %>
 
 			<div class="row">
 				<h3 class="common-title">記事一覧</h3>

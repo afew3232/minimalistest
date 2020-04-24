@@ -1,5 +1,6 @@
 class Admin::TagsController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :create, :edit, :update, :destroy]
+
   def index
   	@tag = Tag.new
   	@tags = Tag.all
@@ -7,12 +8,12 @@ class Admin::TagsController < ApplicationController
 
   def create
 	@tag = Tag.new(params_tag)
-	if @tag.save
-		redirect_to admin_tags_path
-	else
-		@tags = Tag.all
-		render :index
-	end
+  	if @tag.save
+  		redirect_to admin_tags_path
+  	else
+  		@tags = Tag.all
+  		render :index
+  	end
   end
 
   def edit

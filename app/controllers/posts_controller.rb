@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @post_rank = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
 
+    #----------呼び出し元(:call)に応じて、対応したデータをPostモデルに代入-----------
     case params[:call]
     when "new" then #新着記事
       @posts = Post.all.order(created_at: "DESC")
@@ -13,11 +14,11 @@ class PostsController < ApplicationController
       tag = Tag.find(params[:tag_id])
       @word = tag.name
     when "search" then #検索
-      @word = params[:word]
+      @word = params[:word] #ユーザの入力を@wordへ代入
       @posts = Post.where(["title LIKE ? OR text LIKE ?", "%#{@word}%", "%#{@word}%"])
     else #例外処理
       flash[:danger] = "不正な呼び出し"
-      @posts = Post.all.order(created_at: "DESC")
+      #記事は取得しない
     end
 
   end
