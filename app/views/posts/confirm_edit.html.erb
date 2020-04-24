@@ -1,11 +1,9 @@
 <%= render "home/header" %>
+<%= render "home/flash_message" %>
 
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
-			<% if flash[:danger] %>
-				<p><%= flash[:danger] %></p>
-			<% end %>
 
 			<h3 class="common-title">確認画面</h3>
 			<p style="border-bottom:solid gray 2px;padding:10px;margin-bottom:10px;">以下の内容で表示されます。</p>

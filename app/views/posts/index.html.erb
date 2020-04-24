@@ -1,8 +1,5 @@
 <%= render "home/header" %>
-
-<% if flash[:danger] %>
-	<p><%= flash[:danger] %></p>
-<% end %>
+<%= render "home/flash_message" %>
 
 <div class="container">
 

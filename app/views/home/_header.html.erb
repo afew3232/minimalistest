@@ -38,7 +38,7 @@
 
 </header>
 
-<!--タグメニュー headerのtagをクリックするとjsが発火して見える-->
+<!--タグメニュー headerのTagをクリックするとjsが発火して出現-->
 <div class="tag-menu">
   <nav class="navbar navbar-expand" style="box-shadow: 2px 2px 4px gray;background-color:#ddd;padding:0;">
     <ul class="nav navbar-collapse">
@@ -49,15 +49,15 @@
   </nav>
 </div>
 
-<!--検索メニュー headerのSearchをクリックするとjsが発火して見える-->
+<!--検索メニュー headerのSearchをクリックするとjsが発火して出現-->
 <div class="search-menu">
   <nav class="navbar navbar-expand" style="box-shadow: 2px 2px 4px gray;background-color:#ddd;padding:0;">
     <div style="margin:5px 0 5px auto;">
-          <%= form_tag posts_path, method: :get do |f| %>
-            <%= hidden_field_tag :call, "search" %>
-            <%= text_field_tag :word,"", placeholder: "Search" %>
-            <%= submit_tag "Search" %>
-          <% end %>
+      <%= form_tag posts_path, method: :get do |f| %>
+        <%= hidden_field_tag :call, "search" %>
+        <%= text_field_tag :word,"", placeholder: "Search" %>
+        <%= submit_tag "Search" %>
+      <% end %>
     </div>
   </nav>
 </div>
