@@ -53,6 +53,20 @@
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="col-sm-4">
+					<p><b>会員ステータス</b></p>
+				</div>
+				<div class="col-sm-8">
+					<% if @user.status == true %>
+						<p>有効</p>
+					<% end %>
+					<% if @user.status == false %>
+						<p>退会</p>
+					<% end %>
+				</div>
+			</div>
+
 			<%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-info" %>
 
 			<div class="row">
