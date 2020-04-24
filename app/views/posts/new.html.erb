@@ -31,7 +31,7 @@
 						<label>タグ</label>
 					</div>
 					<div class="col-sm-10">
-						<%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name , 1), class: "form-control" %>
+						<%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name , 0),include_blank: true, class: "form-control" %>
 					</div>
 				</div>
 
