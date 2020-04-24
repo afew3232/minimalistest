@@ -30,7 +30,7 @@
 				<tr>
 					<td><%= t.name %></td>
 					<td><%= link_to "編集",edit_admin_tag_path(t.id), class: "btn btn-info" %></td>
-					<td><%= link_to "削除",admin_tag_path(t.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-dark" %></td>
+					<td><%= link_to "削除",admin_tag_path(t.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %></td>
 				</tr>
 				<% end %>
 			</table>

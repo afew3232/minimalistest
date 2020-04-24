@@ -1,4 +1,20 @@
 ja:
+  errors:
+    messages:
+      not_saved: エラー
+  devise:
+    sessions:
+      user:
+        signed_in: ログインしました。
+        signed_out: ログアウトしました。
+      admin:
+        signed_in: ログインしました。
+        signed_out: ログアウトしました。
+    registrations:
+      user:
+        signed_up: 会員登録が完了しました。
+      admin:
+        signed_up: 会員登録が完了しました。
   activerecord:
     models:
       user: ユーザー
@@ -17,3 +33,7 @@ ja:
       post:
         title: タイトル
         text: 本文
+      admin:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
