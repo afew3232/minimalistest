@@ -22,13 +22,13 @@
         destroy_user_session_path , method: :delete, class: "no-decoration-link" %></li>
 
       <% else %>
-        <li class="nav-link"><%= link_to "New Posts",
+        <li class="nav-link header-nav-link"><%= link_to "New Posts",
         posts_path(call: "new"), class: "no-decoration-link" %></li>
-        <li class="nav-link tag-toggle no-decoration-link">Tag</li>
+        <li class="nav-link tag-toggle no-decoration-link header-nav-link">Tag</li>
         <li class="nav-link search-toggle header-nav-link no-decoration-link">Search</li>
-        <li class="nav-link"><%= link_to "LogIn",
+        <li class="nav-link header-nav-link"><%= link_to "LogIn",
         new_user_session_path, class: "no-decoration-link" %></li>
-        <li class="nav-link"><%= link_to "会員登録",
+        <li class="nav-link header-nav-link"><%= link_to "会員登録",
         new_user_registration_path, class: "no-decoration-link" %></li>
       <% end %>
 
