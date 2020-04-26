@@ -9,7 +9,12 @@
 			<p style="border-bottom:solid gray 2px;padding:10px;margin-bottom:10px;">以下の内容で表示されます。</p>
 
 			<h3><%= @post.title %></h3>
-			<small>タグ:<%= @tag.name %></small>
+			<small>タグ：</small>
+			<% for i in 0..$tag_max_global do %>
+				<% if @tag.slice(i) %>
+					<small class="no-decoration-link" style="padding:0 3px;margin:5px;"><%= "##{@tag.slice(i).name}" %> </small>
+				<% end %>
+			<% end %>
 
 			<div class="post-show-image-wrapper">
 				<% unless @post.post_image.file.nil? %>
@@ -27,7 +32,11 @@
 				<%= f.hidden_field :title %>
 				<%= f.hidden_field :text %>
 				<%= hidden_field_tag :"cache[post_image]",@post.post_image.cache_name %>
-				<%= hidden_field_tag :tag_id, @tag.id %>
+				<% for i in 0..$tag_max_global do %>
+					<% if @tag.slice(i) %>
+						<%= hidden_field_tag :tag_id[i], @tag.slice(i).id %>
+					<% end %>
+				<% end %>
 
 				<%= f.submit "この内容で編集する", class: "btn btn-info", style: "margin: 15px 0;" %>
 			<% end %>

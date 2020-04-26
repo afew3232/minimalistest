@@ -7,7 +7,7 @@
 
 			<small>タグ：</small>
 			<% @tag.each do |t| %>
-				<small><%= t.name %></small>
+				<small style="margin:5px;"><%= link_to "##{t.name}",posts_path(call: "tag", tag_id: t.id), class: "no-decoration-link" %></small>
 			<% end %>
 
 			<div class="post-show-image-wrapper">

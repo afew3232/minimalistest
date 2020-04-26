@@ -7,7 +7,7 @@
 
 			<small>タグ：</small>
 			<% @tag.each do |t| %>
-				<small><%= t.name %></small>
+				<small style="margin:5px;" class="no-decoration-link"><%= "##{t.name}" %></small>
 			<% end %>
 
 			<div class="post-show-image-wrapper">

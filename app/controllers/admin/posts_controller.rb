@@ -5,20 +5,23 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
-  	@post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     @tag = Tag.find(LinkTag.where(post_id: @post.id).pluck(:tag_id))
   end
 
   def edit
   	@post = Post.find(params[:id])
     @tags = Tag.all
-    @tag = Tag.find(LinkTag.where(post_id: @post.id).pluck(:tag_id))
+    @tag = Tag.where(id: LinkTag.where(post_id: @post.id).pluck(:tag_id))
   end
 
   def confirm_edit
     @post = Post.new(params_post)
     @post.id = params[:id]
-    @tag = Tag.find(params[:tag_id])
+    @tag = []
+    for i in 0..$tag_max_global do
+      @tag.push(Tag.find(params[:tag_id[i]])) unless params[:tag_id[i]] == ""
+    end
   	unless @post.valid? #valid?(有効ですか?) == falseならrender :new
   		render :edit
   	end
@@ -30,7 +33,9 @@ class Admin::PostsController < ApplicationController
     @post.post_image.retrieve_from_cache! params[:cache][:post_image] unless params[:cache][:post_image]==""
    	if @post.update(params_post)
       @post.link_tag.destroy_all #updateした@postに関連付けされているLinkTagを一度すべて削除
-      LinkTag.create(post_id: @post.id, tag_id: params[:tag_id]) #LinkTag再生成
+      for i in 0..$tag_max_global do #送られてきた分だけタグを生成。 tag_id#{i}がnilはifで弾いて作らない
+        LinkTag.create(post_id: @post.id, tag_id: params[:tag_id[i]]) if params[:tag_id[i]]
+      end
   		redirect_to admin_post_path(@post.id)
   	else
   		flash.now[:danger] = "エラーが発生しました。failed to update."
