@@ -31,7 +31,13 @@
 						<label>タグ</label>
 					</div>
 					<div class="col-sm-10">
-						<%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name , 0),include_blank: true, class: "form-control" %>
+						<% for i in 0..$tag_max_global do %>
+							<% if @tag.slice(i) %>
+								<%= select_tag :tag_id[i], options_from_collection_for_select(Tag.all, :id, :name , @tag.slice(i).id),include_blank: true, class: "form-control" %>
+							<% else %>
+								<%= select_tag :tag_id[i], options_from_collection_for_select(Tag.all, :id, :name , 0),include_blank: true, class: "form-control" %>
+							<% end %>
+						<% end %>
 					</div>
 				</div>
 
