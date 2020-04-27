@@ -9,8 +9,8 @@
       secret_access_key:  ENV['AWS_SECRET_ACCESS_KEY']     # required
     }
 
-    config.aws_attributes = {
-      'Cache-Control'=>"max-age=#{365.day.to_i}",
-      'Expires'=>'Tue, 29 Dec 2015 23:23:23 GMT'
-    }
+    config.aws_attributes = -> { {
+      expires: 1000.week.from_now.httpdate,
+      cache_control: 'max-age=604800'
+    } }
   end
