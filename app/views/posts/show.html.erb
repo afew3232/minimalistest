@@ -11,8 +11,8 @@
 			<% end %>
 
 			<div class="post-show-image-wrapper">
-				<% unless @post.post_image.file.nil? %>
-					<img src="<%= @post.post_image %>", class="post-show-image">
+				<% if @post.post_image.file %>
+					<%= image_tag @post.post_image.to_s, class: "post-show-image" %>
 				<% else %>
 					<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
 				<% end %>
