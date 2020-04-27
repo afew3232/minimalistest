@@ -2,22 +2,19 @@ require 'carrierwave/storage/abstract'
 require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
 
+
+
 CarrierWave.configure do |config|
-  if Rails.env.production?
-    config.storage :fog
-    config.fog_directory  = 'minimalistest'
-    config.fog_provider = 'fog/aws'
-    config.fog_credentials = {
-      provider: 'AWS',
-      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-      region: ENV['AWS_REGION'],
-      path_style: true
-    }
-  else
-    config.storage :file
-    config.enable_processing = false if Rails.env.test?
-  end
+  config.fog_credentials = {
+    provider:              'AWS',                        # required
+    aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],                        # required unless using use_iam_profile
+    aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],                        # required unless using use_iam_profile
+    use_iam_profile:       true,                         # optional, defaults to false
+    region:                ENV['AWS_REGION'],                  # optional, defaults to 'us-east-1'
+  }
+  config.fog_directory  = 'minimalistest'                                      # required
+  config.fog_public     = true                                                 # optional, defaults to true
+  config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" } # optional, defaults to {}
 end
 
 CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
