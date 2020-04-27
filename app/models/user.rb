@@ -7,10 +7,10 @@ class User < ApplicationRecord
   has_many :posts
   has_many :favorites
 
-  validates :nickname, presence: true
-  validates :lastname, presence: true
-  validates :lastname_kana, presence: true
-  validates :firstname, presence: true
-  validates :firstname_kana, presence: true
+  validates :nickname, presence: true, length: {maximum: 20}
+  validates :lastname, presence: true, length: {maximum: 20}
+  validates :lastname_kana, presence: true, length: {maximum: 20}
+  validates :firstname, presence: true, length: {maximum: 20}
+  validates :firstname_kana, presence: true, length: {maximum: 20}
 
 end

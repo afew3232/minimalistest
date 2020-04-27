@@ -95,6 +95,12 @@ class PostsController < ApplicationController
   	end
   end
 
+  def destroy
+    Post.destroy(params[:id])
+    flash[:success] = "記事を削除しました。"
+    redirect_to user_path(current_user.id)
+  end
+
   private
   def params_post
   	params.require(:post).permit(:user_id, :title, :text, :post_image)
