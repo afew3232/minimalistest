@@ -75,5 +75,6 @@ gem "jquery-rails"
 gem 'dotenv-rails'
 
 group :production do
+  gem 'fog'
   gem 'mysql2'
 end
