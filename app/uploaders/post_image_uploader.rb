@@ -9,7 +9,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   if Rails.env.development? || Rails.env.test? 
     storage :file
   else
-    storage :fog
+    storage :aws
   end
 
   # Override the directory where uploaded files will be stored.
@@ -18,14 +18,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-
-  def extension_whitelist
-     %w(jpg jpeg gif png)
-  end
-
-  def filename
-    "#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.#{file.extension}" if original_filename
-  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
