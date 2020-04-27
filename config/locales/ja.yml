@@ -15,6 +15,9 @@ ja:
         signed_up: 会員登録が完了しました。
       admin:
         signed_up: 会員登録が完了しました。
+    failure:
+      admin:
+        unauthenticated: ログインしていません。
   activerecord:
     models:
       user: ユーザー

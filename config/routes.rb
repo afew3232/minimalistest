@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   post 'posts/confirm_new'
   post 'posts/confirm_edit'
-  resources :posts, only: [:index, :show, :new, :create, :edit, :update]
+  resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   post 'favorites/create'
   delete 'favorites/destroy'
 

@@ -1,4 +1,5 @@
 <%= render "home/header" %>
+<%= render "home/flash_message" %>
 
 <div class="container">
 	<div class="row">
@@ -74,12 +75,14 @@
 					<% if user_signed_in? %>
 						<% if current_user.id == @user.id %>
 							<td><%= link_to "編集", edit_post_path(p.id), class: "btn btn-info" %></td>
+							<td><%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-outline-danger", data: { confirm: "Are you sure?" } %></td>
 						<% else %>
 							<td></td>
 						<% end %>
 					<% else %>
 						<td></td>
 					<% end %>
+
 
 				</tr>
 				<% end %>
