@@ -9,6 +9,7 @@
 			<p style="border-bottom:solid gray 2px;padding:10px;margin-bottom:10px;">以下の内容で表示されます。</p>
 
 			<h3><%= @post.title %></h3>
+
 			<small>タグ：</small>
 			<% for i in 0..$tag_max_global do %>
 				<% if @tag.slice(i) %>

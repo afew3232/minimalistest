@@ -51,7 +51,7 @@ class PostsController < ApplicationController
     # 画像がない　→　params[:cache][:post_image] == "" になる。
     @post.post_image.retrieve_from_cache! params[:cache][:post_image] unless params[:cache][:post_image]==""
   	if @post.save
-      for i in 0..$tag_max_global do #送られてきた分だけタグを生成。 tag_id#{i}がnilはifで弾いて作らない
+      for i in 0..$tag_max_global do
         LinkTag.create(post_id: @post.id, tag_id: params[:tag_id[i]]) if params[:tag_id[i]]
       end
   		redirect_to post_path(@post.id)
@@ -85,7 +85,7 @@ class PostsController < ApplicationController
     @post.post_image.retrieve_from_cache! params[:cache][:post_image] unless params[:cache][:post_image]==""
   	if @post.update(params_post)
       @post.link_tag.destroy_all #updateした@postに関連付けされているLinkTagをすべて削除
-      for i in 0..$tag_max_global do #送られてきた分だけタグを生成。 tag_id#{i}がnilはifで弾いて作らない
+      for i in 0..$tag_max_global do
         LinkTag.create(post_id: @post.id, tag_id: params[:tag_id[i]]) if params[:tag_id[i]]
       end
   		redirect_to post_path(@post.id)
