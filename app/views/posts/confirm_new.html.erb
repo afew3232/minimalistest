@@ -9,12 +9,14 @@
 			<p style="border-bottom:solid gray 2px;padding:10px;margin-bottom:10px;">以下の内容で表示されます。</p>
 
 			<h3><%= @post.title %></h3>
+
 			<small>タグ：</small>
 			<% for i in 0..$tag_max_global do %>
 				<% if @tag.slice(i) %>
 					<small class="no-decoration-link" style="padding:0 3px;margin:5px;"><%= "##{@tag.slice(i).name}" %> </small>
 				<% end %>
 			<% end %>
+
 			<div class="post-show-image-wrapper">
 				<% unless @post.post_image.file.nil? %>
 					<%= image_tag @post.post_image.to_s, class: "post-show-image" %>
