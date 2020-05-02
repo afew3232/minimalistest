@@ -26,6 +26,8 @@ class PostsController < ApplicationController
   def show
   	@post = Post.find(params[:id])
     @tag = Tag.find(LinkTag.where(post_id: @post.id).pluck(:tag_id))
+    @comments = Comment.includes(:user).where(post_id: params[:id])
+    @comment_new = Comment.new
   end
 
   def new
