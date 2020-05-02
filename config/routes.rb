@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   post 'favorites/create'
   delete 'favorites/destroy'
 
+  post 'comments/create'
+  delete 'comments/destroy'
+
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     post 'posts/confirm_edit'

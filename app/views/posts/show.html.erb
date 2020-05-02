@@ -7,35 +7,46 @@
 
 			<small>タグ：</small>
 			<% @tag.each do |t| %>
-				<small style="margin:5px;"><%= link_to "##{t.name}",posts_path(call: "tag", tag_id: t.id), class: "no-decoration-link" %></small>
+			<small style="margin:5px;"><%= link_to "##{t.name}",posts_path(call: "tag", tag_id: t.id), class: "no-decoration-link" %></small>
 			<% end %>
 
 			<div class="post-show-image-wrapper">
 				<% unless @post.post_image.file.nil? %>
-					<%= image_tag @post.post_image.to_s, class: "post-show-image" %>
+				<%= image_tag @post.post_image.to_s, class: "post-show-image" %>
 				<% else %>
-					<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
+				<%= image_tag "post-no-image.jpg", class: "post-show-image" %>
 				<% end %>
 			</div>
 
 			<p><%= simple_format(@post.text) %></p>
 
 			<!--ajax対応のいいね　posts/post_favoriteを renderする-->
-			<% if user_signed_in? %>
-				<% if current_user.id != @post.user_id %>
-					<div id="post-show-favorite-ajax-<%= @post.id %>">
-						<%= render partial: "posts/post_favorite", locals: {post: @post} %>
-					</div>
-				<% end %>
+			<% if user_signed_in? && current_user.id != @post.user_id %>
+				<div id="post-show-favorite-ajax-<%= @post.id %>">
+					<%= render partial: "posts/post_favorite", locals: {post: @post} %>
+				</div>
 			<% end %>
 
-			<p><b>この記事の投稿者：<%=link_to @post.user.nickname, user_path(@post.user_id) %></b></p>
+			<p style="margin:25px 0 60px 0;"><b>この記事の投稿者：<%=link_to @post.user.nickname, user_path(@post.user_id) %></b></p>
 
 			<!--自分の記事 → 編集リンク-->
+			<% if user_signed_in? && current_user.id == @post.user_id %>
+				<%= link_to "この記事を編集する", edit_post_path(@post.id), class: "btn btn-info", style: "margin:15px 0;" %>
+			<% end %>
+
+			<!--ajax対応のコメント一覧 -->
+			<div id="post-show-comment-ajax">
+				<%= render partial: "posts/post_comment", locals: {comments: @comments, post: @post} %>
+			</div>
+
+
 			<% if user_signed_in? %>
-				<% if current_user.id == @post.user_id %>
-					<%= link_to "この記事を編集する", edit_post_path, class: "btn btn-info", style: "margin:15px 0;" %>
+			<div>
+				<%= form_with model: @comment_new, url: comments_create_path(post_id: @post.id) do |f|%>
+					<%= f.text_area :content, class: "form-control post-show-comment-area",placeholder: "コメント", style: "resize:none;margin:15px;", rows:2 %>
+					<%= f.submit "コメントする", class: "btn btn-info",style: "margin-bottom:70px;" %>
 				<% end %>
+			</div>
 			<% end %>
 
 		</div>

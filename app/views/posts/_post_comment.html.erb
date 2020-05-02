@@ -1,0 +1,16 @@
+<!--引数 comments: @comments, post: @post, comment_new: @comment_new-->
+<h5>Comments</h5>
+<table class="table">
+	<% comments.each do |c| %>
+		<tr>
+			<td style="width:20%;"><%= link_to c.user.nickname, user_path(c.user.id) %></td>
+			<% if user_signed_in? && current_user.id == c.user.id %>
+				<td style="width:60%;"><%= simple_format(c.content) %></td>
+				<td style ="width:20%;"><%= link_to "削除", comments_destroy_path(comment_id: c.id, post_id: post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, remote: true, class: "btn btn-outline-danger" %></td>
+			<% else %>
+				<td style="width:60%;"><%= c.content %></td>
+				<td style ="width:20%;"></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
