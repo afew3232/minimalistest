@@ -43,6 +43,7 @@
 
 				<div class="row" style="margin:15px 0;">
 					<%= f.file_field :post_image %>
+					<%= f.hidden_field :post_image_cache %>
 				</div>
 				<%= f.hidden_field :user_id, value: @post.user_id %>
 				<%= hidden_field_tag :id, @post.id %>
