@@ -4,8 +4,10 @@ one:
   user_id: 1
   post_id: 1
   content: MyText
+  score: 9.99
 
 two:
   user_id: 1
   post_id: 1
   content: MyText
+  score: 9.99
