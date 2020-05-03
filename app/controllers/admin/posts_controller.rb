@@ -11,6 +11,7 @@ class Admin::PostsController < ApplicationController
 
   def edit
   	@post = Post.find(params[:id])
+    @post.post_image.cache! unless @post.post_image.blank?
     @tags = Tag.all
     @tag = Tag.where(id: LinkTag.where(post_id: @post.id).pluck(:tag_id))
   end
@@ -51,7 +52,7 @@ class Admin::PostsController < ApplicationController
 
   private
   def params_post
-    params.require(:post).permit(:user_id, :title, :text, :post_image)
+    params.require(:post).permit(:user_id, :title, :text, :post_image, :post_image_cache)
   end
 
 end
