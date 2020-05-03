@@ -10,6 +10,8 @@ class HomeController < ApplicationController
 
   	@posts = Post.all.order(created_at: "DESC").limit(5)
     @post_rank = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @post_recommended = Post.find(Comment.group(:post_id).sum(:score).sort_by{|k,v| v}.reverse.to_h.keys.first(5))
+    #ポストのコメントのスコア(google apiでコメントcreate時に作成)の合計で降順ソート
   end
 
   def about
