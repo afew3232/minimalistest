@@ -5,12 +5,13 @@
 		<tr>
 			<td style="width:20%;"><%= link_to c.user.nickname, user_path(c.user.id) %></td>
 			<% if user_signed_in? && current_user.id == c.user.id %>
-				<td style="width:60%;"><%= simple_format(c.content) %></td>
-				<td style ="width:20%;"><%= link_to "削除", comments_destroy_path(comment_id: c.id, post_id: post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, remote: true, class: "btn btn-outline-danger" %></td>
+				<td style="width:50%;"><%= simple_format(c.content) %></td>
+				<td style ="width:15%;"><%= link_to "削除", comments_destroy_path(comment_id: c.id, post_id: post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, remote: true, class: "btn btn-outline-danger" %></td>
 			<% else %>
-				<td style="width:60%;"><%= c.content %></td>
-				<td style ="width:20%;"></td>
+				<td style="width:50%;"><%= c.content %></td>
+				<td style="width:15%;"></td>
 			<% end %>
+			<td style="width:15%;">AIscore:<%= c.score %></td>
 		</tr>
 	<% end %>
 </table>
