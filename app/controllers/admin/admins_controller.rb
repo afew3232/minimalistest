@@ -1,15 +1,14 @@
 class Admin::AdminsController < ApplicationController
   before_action :authenticate_admin!, only: [:show, :edit, :update]
+  before_action :set_admin, only: [:show, :edit, :update]
+
   def show
-  	@admin = Admin.find(params[:id])
   end
 
   def edit
-  	@admin = Admin.find(params[:id])
   end
 
   def update
-  	@admin = Admin.find(params[:id])
   	if @admin.update(params_admin)
   		redirect_to admin_admin_path(@admin.id)
   	else
@@ -20,6 +19,10 @@ class Admin::AdminsController < ApplicationController
   private
   def params_admin
   	params.require(:admin).permit(:email)
+  end
+
+  def set_admin
+    @admin = Admin.find(params[:id])
   end
 
 end

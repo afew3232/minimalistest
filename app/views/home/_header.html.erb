@@ -11,7 +11,7 @@
 
       <% if user_signed_in? %>
         <li class="nav-link header-nav-link"><%= link_to "New Posts",
-        posts_path(call: "new"), class: "no-decoration-link" %></li>
+        posts_path, class: "no-decoration-link" %></li>
         <li class="nav-link tag-toggle header-nav-link no-decoration-link">Tag</li>
         <li class="nav-link header-nav-link"><%= link_to "Write a post",
         new_post_path, class: "no-decoration-link" %></li>
@@ -23,7 +23,7 @@
 
       <% else %>
         <li class="nav-link header-nav-link"><%= link_to "New Posts",
-        posts_path(call: "new"), class: "no-decoration-link" %></li>
+        posts_path, class: "no-decoration-link" %></li>
         <li class="nav-link tag-toggle no-decoration-link header-nav-link">Tag</li>
         <li class="nav-link search-toggle header-nav-link no-decoration-link">Search</li>
         <li class="nav-link header-nav-link"><%= link_to "LogIn",

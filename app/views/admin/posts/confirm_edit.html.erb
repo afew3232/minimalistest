@@ -11,7 +11,7 @@
 			<h3><%= @post.title %></h3>
 
 			<small>タグ：</small>
-			<% for i in 0..$tag_max_global do %>
+			<% for i in 0..@TAGMAX do %>
 				<% if @tag.slice(i) %>
 					<small class="no-decoration-link" style="padding:0 3px;margin:5px;"><%= "##{@tag.slice(i).name}" %> </small>
 				<% end %>
@@ -33,7 +33,7 @@
 				<%= f.hidden_field :title %>
 				<%= f.hidden_field :text %>
 				<%= hidden_field_tag :"cache[post_image]",@post.post_image.cache_name %>
-				<% for i in 0..$tag_max_global do %>
+				<% for i in 0..@TAGMAX do %>
 					<% if @tag.slice(i) %>
 						<%= hidden_field_tag :tag_id[i], @tag.slice(i).id %>
 					<% end %>

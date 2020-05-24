@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
-	$tag_max_global = 2 #postのタグの最大個数-1 (最大1個→0)
-
 	def after_sign_in_path_for(resource)
 		case resource
 		when Admin
