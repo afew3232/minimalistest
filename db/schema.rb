@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2020_05_03_062445) do
     t.string "nickname", default: "", null: false
     t.string "image_id"
     t.boolean "status", default: true, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
