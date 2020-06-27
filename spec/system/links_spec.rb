@@ -92,7 +92,7 @@ describe 'user header test', type: :system do
 
     describe "ログイン中" do
       let(:user) { create(:user) }
-      let(:post) { create(:post) }
+      let(:post) { create(:post, user: user) }
       before do
         visit new_user_session_path
         fill_in "user[email]", with: user.email
@@ -127,8 +127,8 @@ describe 'user header test', type: :system do
         end
 
         it "新しい記事投稿に成功する" do
-          fill_in "post[title]", with: post.title
-          fill_in "post[text]", with: post.text
+          fill_in "post[title]", with: "title"
+          fill_in "post[text]", with: "text"
           click_button "確認画面へ"
 
           expect(page).to have_content "確認画面"
@@ -150,6 +150,9 @@ describe 'user header test', type: :system do
         it "編集画面へのリンク" do
           expect(page).to have_link "編集", href: edit_user_path(user)
         end
+        it "投稿記事表示" do
+          expect(page).to have_content post.title
+        end
 
       end
 
@@ -167,7 +170,26 @@ describe 'user header test', type: :system do
 
           expect(page).to have_content "会員情報を変更しました。"
         end
+      end
 
+      describe "記事編集" do
+        before do
+            visit edit_post_path(post)
+        end
+
+        it "記事編集画面が表示される" do
+            expect(page).to have_content "記事編集"
+        end
+        it "記事編集に成功する" do
+          fill_in "post[title]", with: "titleedit"
+          fill_in "post[text]", with: "textedit"
+          click_button "確認画面へ"
+
+          expect(page).to have_content "確認画面"
+          click_button "この内容で編集する"
+
+          expect(page).to have_content "記事を編集しました。"
+        end
       end
 
     end
