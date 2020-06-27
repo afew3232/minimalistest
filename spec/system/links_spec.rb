@@ -67,6 +67,7 @@ describe 'user header test', type: :system do
       before do
         visit new_user_session_path
       end
+
       context "ログイン画面に遷移" do
         let(:test_user) { user }
         it "ログインに成功する" do
@@ -81,7 +82,6 @@ describe 'user header test', type: :system do
           fill_in "user[password]", with: ""
 
           expect(current_path).to eq(new_user_session_path)
-
         end
 
         it "会員登録画面へリンク" do
@@ -99,6 +99,7 @@ describe 'user header test', type: :system do
         fill_in "user[password]", with: user.password
         click_button "ログイン"
       end
+
       describe "header確認" do
         it "New Posts表示" do
           expect(page).to have_link "New Posts", href: posts_path
@@ -128,11 +129,9 @@ describe 'user header test', type: :system do
         it "新しい記事投稿に成功する" do
           fill_in "post[title]", with: post.title
           fill_in "post[text]", with: post.text
-
           click_button "確認画面へ"
 
           expect(page).to have_content "確認画面"
-
           click_button "この内容で投稿する"
 
           expect(page).to have_content "記事を投稿しました。"
@@ -148,14 +147,29 @@ describe 'user header test', type: :system do
         it "マイページが表示される" do
           expect(page).to have_content "ユーザー情報"
         end
-
         it "編集画面へのリンク" do
           expect(page).to have_link "編集", href: edit_user_path(user)
         end
 
+      end
+
+      describe "ユーザー情報 編集" do
+        before do
+          visit edit_user_path(user)
+        end
+
+        it "ユーザー編集画面が表示される" do
+          expect(page).to have_content "会員情報編集"
+        end
+        it "ユーザー編集できる" do
+          fill_in "user[email]", with: "b@b"
+          click_button "編集完了"
+
+          expect(page).to have_content "会員情報を変更しました。"
+        end
+
+      end
 
     end
-
-
   end
 end
