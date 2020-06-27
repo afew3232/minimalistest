@@ -153,17 +153,6 @@ describe 'user header test', type: :system do
           expect(page).to have_link "編集", href: edit_user_path(user)
         end
 
-        it "投稿した記事が表示される" do
-          expect(page).to have_content post.title 
-        end
-
-      end
-
-      describe "ユーザー編集" do
-
-      end
-
-
 
     end
 
