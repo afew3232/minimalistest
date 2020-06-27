@@ -87,7 +87,7 @@ class PostsController < ApplicationController
       for i in 0..@TAGMAX do
         LinkTag.create(post_id: @post.id, tag_id: params[:tag_id[i]]) if params[:tag_id[i]]
       end
-  		redirect_to post_path(@post.id)
+  		redirect_to post_path(@post.id), flash: {success: "記事を編集しました。"}
   	else
   		flash.now[:danger] = "エラーが発生しました。failed to update."
   		render :confirm_edit
