@@ -361,7 +361,6 @@ describe 'user header test', type: :system do
         end
       end
 
-
     end
 
   end
