@@ -174,11 +174,11 @@ describe 'user header test', type: :system do
 
       describe "記事編集" do
         before do
-            visit edit_post_path(post)
+          visit edit_post_path(post)
         end
 
         it "記事編集画面が表示される" do
-            expect(page).to have_content "記事編集"
+          expect(page).to have_content "記事編集"
         end
         it "記事編集に成功する" do
           fill_in "post[title]", with: "titleedit"
@@ -277,6 +277,90 @@ describe 'user header test', type: :system do
 
         expect(page).to have_content "ログインに失敗しました。"
       end
+
+    end
+
+    context "admin ログイン中" do
+      let(:admin) { create(:admin) }
+      let(:user) { create(:user) }
+      let(:post) { create(:post, user: user) }
+      before do
+        visit new_admin_session_path
+        fill_in "admin[email]", with: admin.email
+        fill_in "admin[password]", with: admin.password
+
+        click_button "ログイン"
+      end
+      describe "header確認" do
+
+        it "MyPageリンク正しい" do
+          expect(page).to have_link "MyPage", href: admin_admin_path(admin)
+        end
+        it "会員一覧リンク正しい" do
+          expect(page).to have_link "会員一覧", href: admin_users_path
+        end
+        it "記事一覧リンク正しい" do
+          expect(page).to have_link "記事一覧", href: admin_posts_path
+        end
+        it "タグ一覧リンク正しい" do
+          expect(page).to have_link "タグ一覧", href: admin_tags_path
+        end
+        it "ログアウトリンク正しい" do
+          expect(page).to have_link "ログアウト", href: destroy_admin_session_path
+        end
+
+      end
+
+      describe "MyPage" do
+        before do
+          visit admin_admin_path(admin)
+        end
+
+        it "MyPage表示される" do
+          expect(page).to have_content "MyPage"
+        end
+        it "編集リンク正しい" do
+          expect(page).to have_link "編集", href: edit_admin_admin_path(admin)
+        end
+      end
+
+      describe "管理者情報編集画面" do
+        before do
+          visit edit_admin_admin_path(admin)
+        end
+
+        it "管理者情報編集画面表示される" do
+          expect(page).to have_content "管理者情報編集"
+        end
+        it "管理者情報編集できる" do
+          fill_in "admin[email]", with: "x@x"
+          click_button "編集完了"
+
+          expect(page).to have_content "管理者情報を編集しました。"
+        end
+      end
+
+      describe "会員一覧" do
+        before do
+          visit admin_users_path
+        end
+        it "会員一覧表示される" do
+          expect(page).to have_content "会員一覧"
+        end
+      end
+
+      describe "会員詳細情報画面" do
+        before do
+          visit admin_user_path(user)
+        end
+        it "会員詳細情報画面表示される" do
+          expect(page).to have_content "会員詳細情報"
+        end
+        it "投稿した記事が表示される" do
+          expect(page).to have_content post.title
+        end
+      end
+
 
     end
 
