@@ -192,6 +192,93 @@ describe 'user header test', type: :system do
         end
       end
 
+      describe "ログアウト" do
+        before do
+          visit user_path(user)
+        end
+
+        it "ログアウトに成功する" do
+          click_link "LogOut"
+
+          expect(page).to have_content "ログアウトしました。"
+        end
+      end
     end
+
+    context "adminログイン前" do
+      describe "header確認" do
+        before do
+          visit new_admin_session_path
+        end
+        it "会員登録リンク正しい" do
+          expect(page).to have_link "会員登録", href: new_admin_registration_path
+        end
+
+        it "ログインリンク正しい" do
+          expect(page).to have_link "ログイン", href: new_admin_session_path
+        end
+      end
+    end
+
+
+    context "admin registration" do
+      before do
+        visit new_admin_registration_path
+      end
+
+      it "管理者登録画面表示される" do
+        have_content "管理者登録画面"
+      end
+
+      it "admin 新規登録成功する" do
+        fill_in "admin[email]", with: "a@a"
+        fill_in "admin[password]", with: "aaaaaa"
+        fill_in "admin[password_confirmation]", with: "aaaaaa"
+        click_button "登録"
+
+        expect(page).to have_content "会員登録が完了しました。"
+      end
+
+      it "admin 新規登録失敗する" do
+        fill_in "admin[email]", with: ""
+        fill_in "admin[password]", with: ""
+        fill_in "admin[password_confirmation]", with: ""
+
+        click_button "登録"
+
+        expect(page).to have_content "エラー"
+      end
+    end
+
+    context "admin ログイン" do
+      let(:admin) { create(:admin) }
+      before do
+        visit new_admin_session_path
+      end
+
+      it "admin 管理者ログイン画面表示される" do
+        expect(page).to have_content "管理者ログイン"
+      end
+
+      it "admin ログイン成功する" do
+        fill_in "admin[email]", with: admin.email
+        fill_in "admin[password]", with: admin.password
+
+        click_button "ログイン"
+
+        expect(page).to have_content "ログインしました。"
+      end
+
+      it "admin ログイン失敗する" do
+        fill_in "admin[email]", with: ""
+        fill_in "admin[password]", with: ""
+
+        click_button "ログイン"
+
+        expect(page).to have_content "ログインに失敗しました。"
+      end
+
+    end
+
   end
 end

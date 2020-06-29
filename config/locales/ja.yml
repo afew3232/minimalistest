@@ -18,6 +18,7 @@ ja:
     failure:
       admin:
         unauthenticated: ログインしていません。
+        invalid: ログインに失敗しました。
   activerecord:
     models:
       user: ユーザー
