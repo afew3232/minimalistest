@@ -10,7 +10,7 @@ class Admin::AdminsController < ApplicationController
 
   def update
   	if @admin.update(params_admin)
-  		redirect_to admin_admin_path(@admin.id)
+  		redirect_to admin_admin_path(@admin.id), flash: { success: "管理者情報を編集しました。" }
   	else
   		render :edit
   	end
