@@ -63,7 +63,7 @@ describe 'user header test', type: :system do
 
     describe "user login" do
       #factroy_bot factries/users.rbよりデータ参照
-      let(:user) { create(:user) }
+      let!(:user) { create(:user) }
       before do
         visit new_user_session_path
       end
@@ -91,8 +91,8 @@ describe 'user header test', type: :system do
     end
 
     describe "ログイン中" do
-      let(:user) { create(:user) }
-      let(:post) { create(:post, user: user) }
+      let!(:user) { create(:user) }
+      let!(:post) { create(:post, user: user) }
       before do
         visit new_user_session_path
         fill_in "user[email]", with: user.email
@@ -151,7 +151,7 @@ describe 'user header test', type: :system do
           expect(page).to have_link "編集", href: edit_user_path(user)
         end
         it "投稿記事表示" do
-          expect(page).to have_content post.title
+          expect(page).to have_link post.title, href: post_path(post)
         end
 
       end
@@ -282,8 +282,8 @@ describe 'user header test', type: :system do
 
     context "admin ログイン中" do
       let(:admin) { create(:admin) }
-      let(:user) { create(:user) }
-      let(:post) { create(:post, user: user) }
+      let!(:user) { create(:user) }
+      let!(:post) { create(:post, user: user) }
       before do
         visit new_admin_session_path
         fill_in "admin[email]", with: admin.email
@@ -359,6 +359,37 @@ describe 'user header test', type: :system do
         it "投稿した記事が表示される" do
           expect(page).to have_content post.title
         end
+      end
+
+      describe "会員情報編集" do
+        before do
+          visit edit_admin_user_path(user)
+        end
+
+        it "会員情報編集画面表示される" do
+          expect(page).to have_content "会員情報編集"
+        end
+        it "会員情報編集できる" do
+          fill_in "user[email]", with: "b@b"
+          click_button "編集完了"
+
+          expect(page).to have_content "会員情報編集しました。"
+        end
+      end
+
+      describe "記事一覧画面" do
+        before do
+          visit admin_posts_path
+        end
+
+        it "記事一覧画面表示される" do
+          expect(page).to have_content "記事一覧"
+        end
+
+        it "記事が表示される" do
+          expect(page).to have_link post.title, href: admin_post_path(post)
+        end
+
       end
 
     end
