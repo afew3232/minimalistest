@@ -281,7 +281,7 @@ describe 'user header test', type: :system do
     end
 
     context "admin ログイン中" do
-      let(:admin) { create(:admin) }
+      let!(:admin) { create(:admin) }
       let!(:user) { create(:user) }
       let!(:post) { create(:post, user: user) }
       before do
@@ -390,6 +390,41 @@ describe 'user header test', type: :system do
           expect(page).to have_link post.title, href: admin_post_path(post)
         end
 
+      end
+
+      describe "記事詳細画面" do
+        before do
+          visit admin_post_path(post)
+        end
+
+        it "記事詳細表示される" do
+          expect(page).to have_content post.title
+        end
+        it "記事編集ボタン表示される" do
+          expect(page).to have_link "編集"
+        end
+      end
+
+      describe "記事編集" do
+        before do
+          visit edit_admin_post_path(post)
+        end
+
+        it "記事編集画面表示される" do
+          expect(current_path).to eq(edit_admin_post_path(post))
+        end
+        it "記事編集成功する" do
+          fill_in "post[title]", with: "title2"
+          fill_in "post[text]", with: "text2"
+
+          click_button "確認画面へ"
+
+          expect(page).to have_content "確認画面"
+
+          click_button "この内容で編集する"
+
+          expect(page).to have_content "記事を編集しました。"
+        end
       end
 
     end

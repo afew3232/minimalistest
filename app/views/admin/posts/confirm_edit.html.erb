@@ -29,7 +29,7 @@
 
 			<%= form_for @post, url: admin_post_path(@post.id),method: :patch do |f| %>
 
-				<%= f.hidden_field :user_id, value: current_user.id %>
+				<%= f.hidden_field :user_id, value: @post.user_id %>
 				<%= f.hidden_field :title %>
 				<%= f.hidden_field :text %>
 				<%= hidden_field_tag :"cache[post_image]",@post.post_image.cache_name %>
