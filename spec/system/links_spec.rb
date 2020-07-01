@@ -427,6 +427,19 @@ describe 'user header test', type: :system do
         end
       end
 
+      describe "ログアウト成功する" do
+        before do
+          visit admin_admin_path(admin)
+        end
+
+        it "ログアウト成功する" do
+          click_link "ログアウト"
+
+          expect(page).to have_content "ログアウトしました。"
+        end
+
+      end
+
     end
 
   end
